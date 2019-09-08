@@ -1,0 +1,12 @@
+sudo: false
+langauge: python
+
+script:
+- git clean -f -d -x
+
+jobs:
+  include:
+    - stage: docs build
+      if: type != pull_request
+      script:
+        - sh build/bin/trigger-docs-travis $TRAVIS_ACCESS_TOKEN
